@@ -2,14 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import CategoryDropdown from "./CategoryDropdown";
-import { CustomCategory } from "../types";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ListFilterIcon } from "lucide-react";
 import CategoriesSidebar from "./CategoriesSidebar";
+import { CategoriesGetManyOutput } from "@/modules/categories/types";
 
 interface CategoriesProps {
-  data: CustomCategory[];
+  data: CategoriesGetManyOutput;
 }
 
 const Categories = ({ data }: CategoriesProps) => {
@@ -24,7 +24,7 @@ const Categories = ({ data }: CategoriesProps) => {
   const activeCategory = "all";
 
   const activeCategoryIndex = data.findIndex(
-    (cat) => cat.slug === activeCategory
+    (cat) => cat.slug === activeCategory,
   );
   const isActiveCategoryHidden =
     activeCategoryIndex >= visibleCount && activeCategoryIndex !== -1;
@@ -63,11 +63,7 @@ const Categories = ({ data }: CategoriesProps) => {
 
   return (
     <div className="relative w-full">
-      <CategoriesSidebar
-        open={isSidebarOpen}
-        onOpenChange={setIsSidebarOpen}
-        data={data}
-      />
+      <CategoriesSidebar open={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
 
       <div
         ref={measureRef}
@@ -107,7 +103,7 @@ const Categories = ({ data }: CategoriesProps) => {
               "h-11 px-4 bg-transparent border-transparent rounded-full hover:bg-white hover:border-primary text-black",
               isActiveCategoryHidden &&
                 !isAnyHovered &&
-                "bg-white border-primary"
+                "bg-white border-primary",
             )}
             onClick={() => setIsSidebarOpen(true)}
           >

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
 import React, { useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../../../../components/ui/button";
 import { usePathname } from "next/navigation";
 import NavbarSidebar from "./NavbarSidebar";
 import { MenuIcon } from "lucide-react";

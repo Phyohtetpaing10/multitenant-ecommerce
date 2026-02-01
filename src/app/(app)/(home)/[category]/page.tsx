@@ -20,8 +20,6 @@ const page = async ({ params, searchParams }: Props) => {
     trpc.products.getMany.infiniteQueryOptions({
       ...filters,
       category,
-      minPrice: filters.minPrice ?? undefined,
-      maxPrice: filters.maxPrice ?? undefined,
       limit: DEFAULT_LIMIT,
     }),
   );

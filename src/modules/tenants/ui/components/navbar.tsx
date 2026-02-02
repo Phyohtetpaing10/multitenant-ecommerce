@@ -5,6 +5,21 @@ import { useTRPC } from "@/trpc/client";
 import Link from "next/link";
 import Image from "next/image";
 import { generateTenantUrl } from "@/lib/utils";
+import dynamic from "next/dynamic";
+import { Button } from "@/components/ui/button";
+import { ShoppingCartIcon } from "lucide-react";
+
+const CheckoutButton = dynamic(
+  () => import("@/modules/checkout/ui/components/checkout-button"),
+  {
+    ssr: false,
+    loading: () => (
+      <Button disabled className=" bg-white">
+        <ShoppingCartIcon className="text-black" />
+      </Button>
+    ),
+  },
+);
 
 interface Props {
   slug: string;
@@ -32,6 +47,7 @@ const Navbar = ({ slug }: Props) => {
           )}
           <p className="text-xl">{data.name}</p>
         </Link>
+        <CheckoutButton hideIfEmpty tenantSlug={slug} />
       </div>
     </nav>
   );
@@ -43,7 +59,9 @@ export const NavbarSkeleton = () => {
   return (
     <nav className="h-20 border-b font-medium bg-white">
       <div className="max-w-[--breakpoint-xl] mx-auto flex items-center justify-between h-full px-4 lg:px-12">
-        <p className="text-xl">Tenant</p>
+        <Button disabled className="bg-white">
+          <ShoppingCartIcon className="text-black" />
+        </Button>
       </div>
     </nav>
   );

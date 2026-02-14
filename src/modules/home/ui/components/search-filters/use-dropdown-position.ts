@@ -1,4 +1,4 @@
-import React, { RefObject } from "react";
+import { RefObject } from "react";
 
 const useDropdownPosition = (ref: RefObject<HTMLDivElement | null>) => {
   const getDropdownPosition = () => {

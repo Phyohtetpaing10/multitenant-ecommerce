@@ -11,10 +11,12 @@ interface Props {
   children: React.ReactNode;
 }
 
+export const dynamic = "force-dynamic";
+
 const layout = async ({ children }: Props) => {
   const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(trpc.categories.getMany.queryOptions());
-  void queryClient.prefetchQuery(trpc.auth.session.queryOptions());
+  await queryClient.prefetchQuery(trpc.categories.getMany.queryOptions());
+  await queryClient.prefetchQuery(trpc.auth.session.queryOptions());
 
   return (
     <div className="flex flex-col min-h-screen">

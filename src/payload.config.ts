@@ -52,7 +52,7 @@ export default buildConfig({
   sharp,
   plugins: [
     multiTenantPlugin<Config>({
-      collections: { products: {} },
+      collections: { products: {}, media: {} },
       tenantsArrayField: {
         includeDefaultField: false,
       },
